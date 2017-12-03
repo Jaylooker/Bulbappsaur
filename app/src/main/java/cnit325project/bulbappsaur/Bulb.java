@@ -9,7 +9,7 @@ import android.graphics.Color;
 //Store information for bulb that can be changed
 public class Bulb extends JSONHandler{
     //types may need to changed to better fit Hue API
-    private Color hue;
+    private Color hue; //TODO: make color xyz and not rgb
     private int saturation;
     private int brightness;
     private boolean power;
@@ -46,5 +46,13 @@ public class Bulb extends JSONHandler{
     public void setPower(boolean power) {
         this.power = power;
     }
+    //creates string json of class
+    /*
+    public String toJSON()
+    {
+        String json = ;
+        return json;
+    }
+    */
 
 }
