@@ -2,10 +2,12 @@ package cnit325project.bulbappsaur;
 
 //Ask for contacts and needs user permissions to them
 //Am considering removing -Jack
+//Login using dummy credentials at runtime
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -42,6 +44,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+
+    //TODO: Get log in function and advance to bulbmamanager activity
+    Intent bulbmanageractivity;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -98,6 +103,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        bulbmanageractivity = new Intent(this, BulbManagerActivity.class);
+        //for testing purposes
+        mEmailView.setText("foo@example.com");
+        mPasswordView.setText("hello");
     }
 
     private void populateAutoComplete() {
@@ -314,12 +323,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
+            /*try {
                 // Simulate network access.
                 Thread.sleep(2000);
+
             } catch (InterruptedException e) {
                 return false;
-            }
+            }*/
+            //connect to raspberri pi
+            UserClient userClient = new UserClient();
+            userClient.connect("url", 8888);
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -339,6 +352,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                //go to bulb manager activity
+                startActivity(bulbmanageractivity);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
