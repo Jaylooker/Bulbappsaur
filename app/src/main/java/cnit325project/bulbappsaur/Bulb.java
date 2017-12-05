@@ -2,33 +2,43 @@ package cnit325project.bulbappsaur;
 
 import android.graphics.Color;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by jackb on 11/13/2017.
  */
 
 //Store information for bulb that can be changed
 public class Bulb extends JSONHandler{
+
     //types may need to changed to better fit Hue API
-    private Color hue; //TODO: make color xyz and not rgb
-    private int saturation;
+    private int bulbnumber;
+    private String status;
+    private BulbColor hue;
     private int brightness;
-    private boolean power;
 
     //getters and setters
-    public Color getHue() {
+    public int getBulbnumber() {
+        return bulbnumber;
+    }
+
+    public void setBulbnumber(int bulbnumber) {
+        this.bulbnumber = bulbnumber;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public BulbColor getHue() {
         return hue;
     }
 
-    public void setHue(Color hue) {
+    public void setHue(BulbColor hue) {
         this.hue = hue;
-    }
-
-    public int getSaturation() {
-        return saturation;
-    }
-
-    public void setSaturation(int saturation) {
-        this.saturation = saturation;
     }
 
     public int getBrightness() {
@@ -39,20 +49,26 @@ public class Bulb extends JSONHandler{
         this.brightness = brightness;
     }
 
-    public boolean isPower() {
-        return power;
+    //creates string json of class
+
+    public JSONObject toJSON()
+    {
+        JSONObject jsonObject = new JSONObject();
+        String json = "{\n" +
+                "Bulb Number: " + this.bulbnumber + "\n" +
+                "Status: " + this.status + "\n" +
+                "R: " + this.hue.getRed() + "\n" +
+                "G: " + this.hue.getGreen() + "\n" +
+                "B: " + this.hue.getBlue() + "\n" +
+                "Brightness: " + this.brightness + "\n" +
+                "}";
+        try {
+            jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 
-    public void setPower(boolean power) {
-        this.power = power;
-    }
-    //creates string json of class
-    /*
-    public String toJSON()
-    {
-        String json = ;
-        return json;
-    }
-    */
 
 }
