@@ -33,7 +33,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     //TODO: Get log in function and advance to bulbmamanager activity
-    Intent bulbmanageractivity;
+    private Intent bulbmanageractivity;
+    private JSONClient client;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -330,9 +333,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (InterruptedException e) {
                 return false;
             }*/
-            //connect to raspberri pi
-            UserClient userClient = new UserClient();
-            userClient.connect("url", 8888);
+            //connect to raspberri pi HERE
+            client = new JSONClient();
+            client.connect("url", 8888); //server url and portnum
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -352,8 +355,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                //go to bulb manager activity
-                startActivity(bulbmanageractivity);
+                bulbmanageractivity.putExtra("client", client); //pass client to bulb manager activity
+                startActivity(bulbmanageractivity);  //go to bulb manager activity
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
