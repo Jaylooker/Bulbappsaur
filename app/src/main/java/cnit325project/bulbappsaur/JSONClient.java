@@ -50,36 +50,39 @@ public class JSONClient extends Client {
                 do //do once
                 {
 
-                    jsonReader.beginArray();  //get server array json
+                    jsonReader.beginObject();  //get server array json
                     while (jsonReader.hasNext())
                     {
+                        Log.d("Json reader: ", jsonReader.nextName());
+                        bulb.setBulbnumber(Integer.parseInt(jsonReader.nextName()));
                         jsonReader.beginObject();
                         while(jsonReader.hasNext())
                         {
                             String name = jsonReader.nextName();
                             switch(name)
                             {
-                                case "Bulb Number": bulb.setBulbnumber(jsonReader.nextInt());
+                                case "on": bulb.setStatus(jsonReader.nextString()); //Status
                                     break;
-                                case "Status": bulb.setStatus(jsonReader.nextString());
+                                case "R": red = jsonReader.nextInt(); //R
                                     break;
-                                case "R": red = jsonReader.nextInt();
+                                case "G": green = jsonReader.nextInt(); //G
                                     break;
-                                case "G": green = jsonReader.nextInt();
+                                case "B": blue = jsonReader.nextInt(); //B
                                     break;
-                                case "B": blue = jsonReader.nextInt();
-                                    break;
-                                case "Brightness": bulb.setBrightness(jsonReader.nextInt());
+                                case "bri": bulb.setBrightness(jsonReader.nextInt()); //Brightness
                                     break;
                             }
                         }
                         BulbColor bulbColor = new BulbColor(red, green, blue);
-                        bulb.setHue(bulbColor);
+                        bulb.setBulbColor(bulbColor);
                         jsonReader.endObject();
-                        Log.i("Bulb", bulb.toString()); //log
-                        bulbGroup.addbulb(bulb);
+                        Log.d("Bulb" ,bulb.toString()); //log
+
+                        //bulbGroup.addbulb(bulb); //buggy
                     }
-                    jsonHandler.getJsonReader().endArray();
+                    jsonReader.endObject();
+
+                    //TODO: Add code send JSON bulbs back to server
                     //get client input
                      //send to server
                     // get input from server
@@ -88,6 +91,7 @@ public class JSONClient extends Client {
                     {
                         connected = false;
                     }
+
                 } while(connected); //receiving input
             }
             finally
@@ -99,6 +103,11 @@ public class JSONClient extends Client {
         {
             ioexc.printStackTrace();
         }
+    }
+
+    //getter
+    public BulbGroup getBulbGroup() {
+        return bulbGroup;
     }
 
 }

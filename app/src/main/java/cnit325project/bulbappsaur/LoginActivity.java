@@ -7,8 +7,13 @@ package cnit325project.bulbappsaur;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +29,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +41,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -326,16 +334,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            /*try {
+            //dummy code
+            try {
                 // Simulate network access.
                 Thread.sleep(2000);
 
             } catch (InterruptedException e) {
                 return false;
-            }*/
-            //connect to raspberri pi HERE
+            }
+
+            ////////
+
+            InetAddress server;
+            String url;
+            int portnum;
+            /*
+
+            server = getserver();
+            url = server.getCanonicalHostName(); //url
+            ByteBuffer convertedaddress = ByteBuffer.wrap(server.getAddress()); //convert by big-endian
+            address = convertedaddress.getInt();  //address
+            //connect to raspberry pi HERE
+            //client = new JSONClient();
+            //client.connect(url, address);  //server url and portnum
+            */
+
+            /*For hardcode test*/
+            /*url = "73.102.243.213";
+            portnum =1112;
+
+
             client = new JSONClient();
-            client.connect("url", 8888); //server url and portnum
+            client.connect(url, portnum);
+            */
+            /////////
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -357,7 +389,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 bulbmanageractivity.putExtra("client", client); //pass client to bulb manager activity
                 startActivity(bulbmanageractivity);  //go to bulb manager activity
-                finish();
+                finish(); //end login activity
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -370,5 +402,51 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
+
+    private InetAddress getserver()
+    {
+        InetAddress address = null;
+        try
+        {
+            Context context = this.getApplicationContext();
+            ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            int lanipaddress = wifiInfo.getIpAddress();
+            String lanipstring =  String.format("%d.%d.%d.%d", lanipaddress >> 24 & 0xff, lanipaddress >> 16 & 0xff, lanipaddress >> 8 & 0xff, lanipaddress & 0xff); //format from int to string
+
+            String subnet = lanipstring.substring(0, lanipstring.lastIndexOf(".") + 1);
+
+            for (int i = 0; i < 256; i++)
+            {
+                String ip = subnet + String.valueOf(i);
+                InetAddress ipaddress = InetAddress.getByName(ip);
+                String hostname = ipaddress.getCanonicalHostName();
+                boolean timeout = ipaddress.isReachable(1000);
+
+                if (timeout) //if connection times out
+                {
+                    break;
+                }
+
+                Log.i("Found", ipaddress.getCanonicalHostName() +  " ---" + ipaddress.toString()); //log ips
+
+                if (hostname.contains("raspberry pi")) //if has the wanted hosy
+                {
+                    return address = ipaddress;
+                }
+            }
+            return address;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return address;
+        }
+    }
+
+
 }
 
