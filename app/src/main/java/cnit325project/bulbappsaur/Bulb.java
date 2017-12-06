@@ -1,34 +1,42 @@
 package cnit325project.bulbappsaur;
 
-import android.graphics.Color;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by jackb on 11/13/2017.
  */
 
 //Store information for bulb that can be changed
-public class Bulb extends JSONHandler{
+public class Bulb /*extends JSONHandler*/{
+
     //types may need to changed to better fit Hue API
-    private Color hue;
-    private int saturation;
+    private int bulbnumber;
+    private String status;
+    private BulbColor bulbcolor;
     private int brightness;
-    private boolean power;
 
     //getters and setters
-    public Color getHue() {
-        return hue;
+    public int getBulbnumber() {
+        return bulbnumber;
     }
 
-    public void setHue(Color hue) {
-        this.hue = hue;
+    public void setBulbnumber(int bulbnumber) {
+        this.bulbnumber = bulbnumber;
+    }
+    public String getStatus() {
+        return status;
     }
 
-    public int getSaturation() {
-        return saturation;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public BulbColor getBulbcolor() {
+        return bulbcolor;
     }
 
-    public void setSaturation(int saturation) {
-        this.saturation = saturation;
+    public void setBulbColor(BulbColor bulbcolor) {
+        this.bulbcolor = bulbcolor;
     }
 
     public int getBrightness() {
@@ -39,12 +47,48 @@ public class Bulb extends JSONHandler{
         this.brightness = brightness;
     }
 
-    public boolean isPower() {
-        return power;
+    //creates string json of class
+    public JSONObject toJSON()
+    {
+        JSONObject jsonObject = new JSONObject();
+        String json = "{\n" +
+                "Bulb Number: " + this.bulbnumber + "\n" +
+                "Status: " + this.status + "\n" +
+                "R: " + this.bulbcolor.getRed() + "\n" +
+                "G: " + this.bulbcolor.getGreen() + "\n" +
+                "B: " + this.bulbcolor.getBlue() + "\n" +
+                "Brightness: " + this.brightness + "\n" +
+                "}";
+        try {
+            jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 
-    public void setPower(boolean power) {
-        this.power = power;
+    //constructors
+    public Bulb()
+    {
+
     }
+    
+    public Bulb(int num, String stat, BulbColor color, int bright)
+    {
+        this.bulbnumber = num;
+        this.status = stat;
+        this.bulbcolor = color;
+        this.brightness = bright;
+    }
+
+    public Bulb(Bulb b)
+    {
+        this.bulbnumber = b.getBulbnumber();
+        this.status = b.getStatus();
+        this.bulbcolor = b.getBulbcolor();
+        this.brightness = b.getBrightness();
+    }
+
+
 
 }

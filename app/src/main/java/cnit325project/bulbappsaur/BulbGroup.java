@@ -17,5 +17,14 @@ public class BulbGroup {
         this.bulbs = bulbs;
     }
 
+    public void addbulb (Bulb bulb)
+    {
+        if (bulb != null)
+        {
+            Bulb b = new Bulb(bulb);
+            this.bulbs.add(b);
+        }
+    }
+
 
 }
