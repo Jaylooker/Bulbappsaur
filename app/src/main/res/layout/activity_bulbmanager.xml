@@ -9,7 +9,8 @@
     android:weightSum="1"
     tools:context="cnit325project.bulbappsaur.BulbManagerActivity">
 
-
+    <!-- ListView contains bulbs -->
+    <!--
     <ListView
         android:id="@+id/lvbulbs"
         android:layout_width="match_parent"
@@ -17,6 +18,40 @@
         android:layout_weight=".8">
 
     </ListView>
+    -->
+    <!-- for demo-->
+    <LinearLayout
+        android:id="@+id/llbulb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imgbulbdummy"
+            android:layout_width="76dp"
+            android:layout_height="84dp"
+            android:padding="5dp"
+            app:srcCompat="@drawable/bulbeditted" />
+
+        <TextView
+            android:id="@+id/txtrowstatusdummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="On"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtrowbrightnessdummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.49"
+            android:padding="5dp"
+            android:text="Brightness: %100"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+    <!-- ^^^ for demo  ^^^^-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,11 +66,13 @@
             android:onClick="OnExitClick"
             android:text="Exit" />
 
+        <!--
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
+            -->
     </LinearLayout>
 
 </LinearLayout>

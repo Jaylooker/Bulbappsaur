@@ -1,7 +1,11 @@
 package cnit325project.bulbappsaur;
 
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import java.io.*;
 import java.net.*;
@@ -12,7 +16,8 @@ import java.util.*;
  */
 //Handles connecting to a server
     //Is copied, will generalize and change since being inherited
-public class Client implements IClient, Parcelable{
+    //TODO: make client extend service
+public class Client /*extends Service implements*/ implements IClient, Parcelable{
 private String url;
 private int portnum;
 
@@ -89,7 +94,14 @@ public Client()
     
 }
 
-public Client(String url, int portnum) 
+/*
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+*/
+    public Client(String url, int portnum)
 {
     this.url = url;
     this.portnum = portnum;

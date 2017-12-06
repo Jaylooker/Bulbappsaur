@@ -1,5 +1,7 @@
 package cnit325project.bulbappsaur;
 
+import android.graphics.Color;
+
 /**
  * Created by jackb on 12/4/2017.
  */
@@ -35,6 +37,15 @@ public class BulbColor {
         this.green = green;
     }
 
+    //to int
+
+    public int toInt()
+    {
+        int color;
+        color = Color.rgb(this.red, this.green, this.blue);
+        return color;
+
+    }
     //constructors
 
     public BulbColor() {

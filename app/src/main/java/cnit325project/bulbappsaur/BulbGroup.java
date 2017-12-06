@@ -19,7 +19,11 @@ public class BulbGroup {
 
     public void addbulb (Bulb bulb)
     {
-        bulbs.add(bulb);
+        if (bulb != null)
+        {
+            Bulb b = new Bulb(bulb);
+            this.bulbs.add(b);
+        }
     }
 
 
