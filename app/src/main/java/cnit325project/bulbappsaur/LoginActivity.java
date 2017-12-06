@@ -387,7 +387,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                bulbmanageractivity.putExtra("client", client); //pass client to bulb manager activity
+                //bulbmanageractivity.putExtra("client", client); //pass client to bulb manager activity
                 startActivity(bulbmanageractivity);  //go to bulb manager activity
                 finish(); //end login activity
             } else {

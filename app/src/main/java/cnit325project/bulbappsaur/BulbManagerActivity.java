@@ -114,20 +114,22 @@ public class BulbManagerActivity extends AppCompatActivity {
                 //Bulb selectedbulb = allbulbs.getBulbs().get(position); //get selected bulb
                 BulbDialog bulbDialog = new BulbDialog(); //create dialog
                 bulbDialog.show(getSupportFragmentManager(), "BulbDialog"); //display dialog
-                //get input from user
+                //get dialog input from user
                 //View bulbview = bulbDialog.getBulbview();
-                EditText etred =  bulbview.findViewById(R.id.etred);
-                EditText etgreen = bulbview.findViewById(R.id.etgreen);
-                EditText etblue = bulbview.findViewById(R.id.etblue);
-                EditText etstatus = bulbview.findViewById(R.id.etstatus);
-                EditText etbrightness = bulbview.findViewById(R.id.etbrightness);
+                EditText etred =  (EditText) findViewById(R.id.etred);
+                EditText etgreen = (EditText) findViewById(R.id.etgreen);
+                EditText etblue = (EditText) findViewById(R.id.etblue);
+                EditText etstatus = (EditText) findViewById(R.id.etstatus);
+                EditText etbrightness = (EditText) findViewById(R.id.etbrightness);
 
+                /*
                 int red = Integer.parseInt(etred.getText().toString());
                 int green = Integer.parseInt(etgreen.getText().toString());
                 int blue = Integer.parseInt(etblue.getText().toString());
                 String status = etstatus.getText().toString();
                 int brightness = Integer.parseInt(etbrightness.getText().toString());
                 BulbColor bulbColor = new BulbColor(red, green, blue);
+                */
 
                 //set to select bulb from fragment
                     /*
@@ -147,6 +149,7 @@ public class BulbManagerActivity extends AppCompatActivity {
                     viewbrightness.setText("Brightness: " + brightness);
                     */
 
+                /*
                 ImageView viewbulb =  (ImageView) findViewById(R.id.imgbulbdummy);
                 TextView viewstatus =   (TextView) findViewById(R.id.txtrowstatusdummy);
                 TextView viewbrightness =  (TextView) findViewById(R.id.txtrowbrightnessdummy);
@@ -154,6 +157,7 @@ public class BulbManagerActivity extends AppCompatActivity {
                 viewbulb.setColorFilter(bulbColor.toInt(), PorterDuff.Mode.MULTIPLY);
                 viewstatus.setText(status);
                 viewbrightness.setText("Brightness: " + brightness);
+                */
             }
         });
         //for demo
