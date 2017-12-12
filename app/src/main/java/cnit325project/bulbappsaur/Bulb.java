@@ -81,13 +81,6 @@ public class Bulb /*extends JSONHandler*/{
         this.brightness = bright;
     }
 
-    public Bulb(Bulb b)
-    {
-        this.bulbnumber = b.getBulbnumber();
-        this.status = b.getStatus();
-        this.bulbcolor = b.getBulbcolor();
-        this.brightness = b.getBrightness();
-    }
 
 
 
