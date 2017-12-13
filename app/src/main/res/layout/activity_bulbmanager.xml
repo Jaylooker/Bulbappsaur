@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TODO: create layout probably using scroll view-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +9,7 @@
     tools:context="cnit325project.bulbappsaur.BulbManagerActivity">
 
     <!-- ListView contains bulbs -->
-    <!--
+
     <ListView
         android:id="@+id/lvbulbs"
         android:layout_width="match_parent"
@@ -18,8 +17,9 @@
         android:layout_weight=".8">
 
     </ListView>
-    -->
+
     <!-- for demo-->
+    <!--
     <LinearLayout
         android:id="@+id/llbulb"
         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
             android:textSize="24sp" />
 
     </LinearLayout>
-    <!-- ^^^ for demo  ^^^^-->
+    <!- ^^^ for demo  ^^^^-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,5 +74,6 @@
             android:text="Button" />
             -->
     </LinearLayout>
+
 
 </LinearLayout>

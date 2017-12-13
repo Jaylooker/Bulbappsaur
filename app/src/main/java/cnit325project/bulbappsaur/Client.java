@@ -17,7 +17,7 @@ import java.util.*;
 //Handles connecting to a server
     //Is copied, will generalize and change since being inherited
     //TODO: make client extend service
-public class Client /*extends Service implements*/ implements IClient, Parcelable{
+public class Client implements IClient, Parcelable{
 private String url;
 private int portnum;
 
@@ -41,6 +41,7 @@ public int getportnum()
     return portnum;
 }
 //other methods
+//IClient methods
 public void connect(String url, int portnum)
 {
 
@@ -58,7 +59,7 @@ public void connect(String url, int portnum)
 
     }
 
-    //parcelable
+    //parcelable methods and constructors
 
     public Client(Parcel in)
     {
@@ -94,13 +95,6 @@ public Client()
     
 }
 
-/*
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-*/
     public Client(String url, int portnum)
 {
     this.url = url;

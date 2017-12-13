@@ -49,8 +49,8 @@ public class JSONClient extends Client {
                 boolean connected = true;
                 do //do once
                 {
-
-                    jsonReader.beginObject();  //get server array json
+                    //get server array json
+                    jsonReader.beginObject();
                     while (jsonReader.hasNext())
                     {
                         Log.d("Json reader: ", jsonReader.nextName());
@@ -78,12 +78,13 @@ public class JSONClient extends Client {
                         jsonReader.endObject();
                         Log.d("Bulb" ,bulb.toString()); //log
 
-                        //bulbGroup.addbulb(bulb); //buggy
+                        bulbGroup.addbulb(bulb); //buggy
                     }
                     jsonReader.endObject();
 
                     //TODO: Add code send JSON bulbs back to server
                     //get client input
+
                      //send to server
                     // get input from server
                     //print server input

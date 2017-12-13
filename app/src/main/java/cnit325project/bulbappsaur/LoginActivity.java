@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     //TODO: Get log in function and advance to bulbmamanager activity
     private Intent bulbmanageractivity;
-    private JSONClient client;
+    private JSONClient jsonClient;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -335,6 +335,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // TODO: attempt authentication against a network service.
 
             //dummy code
+
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -345,7 +346,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             ////////
 
-            InetAddress server;
+            //InetAddress server;
             String url;
             int portnum;
             /*
@@ -360,12 +361,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             */
 
             /*For hardcode test*/
-            /*url = "73.102.243.213";
+            /*
+            url = "73.102.243.213";
             portnum =1112;
 
 
-            client = new JSONClient();
-            client.connect(url, portnum);
+            jsonClient = new JSONClient();
+
+            jsonClient.connect(url, portnum); //is continuous so doinbackground does not complete
             */
             /////////
 
@@ -387,7 +390,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                //bulbmanageractivity.putExtra("client", client); //pass client to bulb manager activity
+                //bulbmanageractivity.putExtra("client", jsonClient); //pass client to bulb manager activity
                 startActivity(bulbmanageractivity);  //go to bulb manager activity
                 finish(); //end login activity
             } else {
