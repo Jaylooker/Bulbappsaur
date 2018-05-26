@@ -48,6 +48,8 @@ public class Bulb /*extends JSONHandler*/{
     }
 
     //creates string json of class
+    //will be replaced by Jackson library
+    /*
     public JSONObject toJSON()
     {
         JSONObject jsonObject = new JSONObject();
@@ -66,6 +68,7 @@ public class Bulb /*extends JSONHandler*/{
         }
         return jsonObject;
     }
+    */
 
     //constructors
     public Bulb()

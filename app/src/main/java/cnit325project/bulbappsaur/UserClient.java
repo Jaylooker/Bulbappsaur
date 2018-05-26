@@ -41,8 +41,7 @@ public class UserClient extends Client {
                 {
                     String inputline = userinput.nextLine(); //get client input
                     out.println(inputline); //send to server
-                    String line = in.nextLine(); // get input from server
-                    serverreply = line;
+                    serverreply = in.nextLine(); // get input from server
                     //System.out.println(line); //print server input
                     if (inputline.trim().equals("BYE"))
                     {

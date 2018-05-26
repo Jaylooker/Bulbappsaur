@@ -1,22 +1,14 @@
 package cnit325project.bulbappsaur;
 
-import android.graphics.Color;
-import android.os.Parcel;
-import android.support.design.widget.Snackbar;
 import android.util.JsonReader;
 import android.util.JsonWriter;
 import android.util.Log;
-import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Serializable;
 import java.net.Socket;
-import java.util.Scanner;
 
 /**
  * Created by jackb on 11/13/2017.

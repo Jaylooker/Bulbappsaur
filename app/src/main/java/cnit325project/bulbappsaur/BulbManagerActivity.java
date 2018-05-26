@@ -1,29 +1,16 @@
 package cnit325project.bulbappsaur;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class BulbManagerActivity extends AppCompatActivity {
 
@@ -42,30 +29,23 @@ public class BulbManagerActivity extends AppCompatActivity {
         login = new Intent(this, LoginActivity.class);
         allbulbs = new BulbGroup();
 
-
         Intent fromloginactivity = getIntent();
         Client client =  fromloginactivity.getParcelableExtra("client"); //get client from loginactivity
         client = new JSONClient();
         jsonClient = (JSONClient) client; //type cast
         Toast.makeText(getApplicationContext(), jsonClient.toString(), Toast.LENGTH_LONG).show(); //show for debug purposes
 
-
-
         //for testing
 
         Bulb b1 = new Bulb (1,"On",new BulbColor(23,45,76), 100);
         Bulb b2 = new Bulb (2,"Off",new BulbColor(27,98,111), 100);
 
-        //TODO: fix weird bug of null pointer refernece
-        allbulbs.addbulb(b1); //null pointer? //pass by value NOT pass by reference
+        allbulbs.addbulb(b1);
         allbulbs.addbulb(b2);
-
 
         //allbulbs.setBulbs(jsonClient.getBulbGroup().getBulbs()); //get bulbs from client
         bulbadapter = new BulbAdapter(this, allbulbs.getBulbs()); //make adapter of all bulbs
         bulbview.setAdapter(bulbadapter); //set listview to adapater
-
-
 
         bulbview.setOnItemClickListener(new AdapterView.OnItemClickListener() { //set on item click method
             @Override
@@ -102,12 +82,12 @@ public class BulbManagerActivity extends AppCompatActivity {
 
                     viewbulb.setColorFilter(bulbColor.toInt(), PorterDuff.Mode.MULTIPLY);
                     viewstatus.setText(status);
-                    viewbrightness.setText("Brightness: " + brightness);
+                    String strbrightness = getString(R.string.txtbrighness) + brightness;
+                    viewbrightness.setText(strbrightness);
                 }
 
             }
         });
-
 
         //for demo
         /*
@@ -166,7 +146,6 @@ public class BulbManagerActivity extends AppCompatActivity {
         //for demo
         */
     }
-
 
     public void OnExitClick(View view)
     {
