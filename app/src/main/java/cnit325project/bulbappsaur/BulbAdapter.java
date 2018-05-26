@@ -23,9 +23,9 @@ public class BulbAdapter extends ArrayAdapter<Bulb> {
         super(context, 0, bulbs);
     }
 
-
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Bulb b = getItem(position); // get bulb
         if (convertView == null)
         {
@@ -40,6 +40,5 @@ public class BulbAdapter extends ArrayAdapter<Bulb> {
         viewstatus.setText(b.getStatus());
         viewbrightness.setText("Brightness: " + b.getBrightness());
         return convertView;
-
     }
 }

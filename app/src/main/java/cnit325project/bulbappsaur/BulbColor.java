@@ -11,7 +11,6 @@ public class BulbColor {
     private int blue;
     private int green;
 
-
     //getters and setters
     public int getRed() {
         return red;
@@ -38,7 +37,6 @@ public class BulbColor {
     }
 
     //to int
-
     public int toInt()
     {
         int color;
@@ -46,11 +44,12 @@ public class BulbColor {
         return color;
 
     }
-    //constructors
 
+    //constructors
     public BulbColor() {
 
     }
+
     public BulbColor(int red, int blue, int green) {
         this.red = red;
         this.blue = blue;

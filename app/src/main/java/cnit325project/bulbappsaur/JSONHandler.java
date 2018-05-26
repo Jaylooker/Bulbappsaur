@@ -4,9 +4,6 @@ import android.util.JsonReader;
 import android.util.JsonWriter;
 import org.json.*;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 /**
  * Created by jackb on 11/13/2017.
  */
@@ -62,12 +59,15 @@ public class JSONHandler {
     }
 
     //other methods
+    //replace with Jackson parser
+    /*
     public Bulb parsebulb(JSONObject bulb)
     {
         Bulb objbulb = new Bulb();
 
         return objbulb;
     }
+    */
 
     public JSONObject encodebulb (Bulb bulb) //requires bean getters and setters: 'is' and 'get'
     {
@@ -79,12 +79,4 @@ public class JSONHandler {
         }
         return jsonObject;
     }
-
-
 }
-
-/*
-
-
-
- */

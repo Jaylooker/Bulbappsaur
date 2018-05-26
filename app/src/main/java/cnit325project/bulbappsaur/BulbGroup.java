@@ -1,7 +1,5 @@
 package cnit325project.bulbappsaur;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 /**
@@ -31,7 +29,7 @@ public class BulbGroup { //could possibly make inheritance
     //constructors
     public BulbGroup ()
     {
-        bulbs = new ArrayList<Bulb>();
+        bulbs = new ArrayList<>();
     }
 
 

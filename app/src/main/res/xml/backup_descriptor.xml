@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!--files to backup, info: https://developer.android.com/training/backup/autosyncapi.html-->
+    <!-- Exclude specific shared preferences that contain GCM registration Id -->
+</full-backup-content>
